@@ -1,0 +1,100 @@
+/* .main{
+    padding-top: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    display: flex;
+    background-color: antiquewhite;
+    height: 40px;
+
+}
+.home{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 900px;
+    gap: 20px;
+    color: black;
+    outline-color: black;
+} */
+.navbar {
+  height: 10vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px 20px;
+  background-color: #dde4eb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  padding: 10px;
+  width: 30%;
+  display: flex;
+  align-items: end;
+  font-size: 1.2em;
+}
+
+.navbar-brand .brand-name {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+.navbar-links div{
+    padding: 18px;
+    gap:30px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #b4bac0;
+  font-size: 1em;
+  transition: color 0.1s ease, transform 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #343a40;
+  transform: scale(1.1);
+}
+.cart-items {
+    margin-left: 390px;
+    height: 10vh;
+    width: fit-content;
+    /* padding: 10px; */
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .cart-content {
+    display: flex;
+    align-items: center; /* Aligns the icon and text vertically */
+    gap: 5px; /* Space between the icon and text */
+  }
+  
+  .cart-content svg {
+    font-size: 1.5rem; /* Adjust the icon size if needed */
+  }
+  
+/* .cart-items {
+  margin-left: 400px;  
+  height: 10vh;
+  width: fit-content;
+  padding: 10px;
+  font-weight: bold;
+  color: #343a40;
+} */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
