@@ -28,11 +28,10 @@ const Contact = () => {
       )
     .then((response) => {
       console.log('Email sent successfully!', response.status, response.text);
-      // Reset form or show success message
     })
     .catch((err) => {
       console.error('Failed to send email.', err);
-      // Show error message
+    
     });
     setFormData({
       from_userEmail: '',
@@ -50,6 +49,7 @@ const Contact = () => {
           type="email"
           id="from_userEmail"
           name="from_userEmail"
+          placeholder='example@example.com'
           value={formData.from_userEmail}
           onChange={handleChange}
           required
@@ -71,6 +71,7 @@ const Contact = () => {
         <textarea
           id="message"
           name="message"
+          placeholder='Enter your message here'
           value={formData.message}
           onChange={handleChange}
           required
