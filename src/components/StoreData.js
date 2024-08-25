@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -11,16 +10,35 @@ const StoreData = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(8);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const fetchProducts = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const data = await res.json();
-    setData(data);
+  const fetchProducts = async (retries = 3) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("https://fakestoreapi.com/products");
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      setData(data);
+    } catch (err) {
+      console.error("Failed to fetch products:", err);
+      if (retries > 0) {
+        console.log(`Retrying... (${retries} attempts left)`);
+        setTimeout(() => fetchProducts(retries - 1), 2000); // Wait 2 seconds before retrying
+      } else {
+        setError("Failed to fetch products. Please try again later.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleAdd = (product) => {
@@ -35,6 +53,14 @@ const StoreData = () => {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
